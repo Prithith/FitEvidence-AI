@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitEvidence AI — Train on evidence, not opinion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="wordmark">
+      FIT<span class="wordmark-accent">EVIDENCE</span>
+      <span class="wordmark-tag">AI</span>
+    </div>
+    <div class="status-pill">
+      <span class="status-dot" aria-hidden="true"></span>
+      GROUNDED IN SOURCE DOCUMENTS
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">Evidence-based. Not bro-science.</p>
+    <h1 class="headline">
+      STOP GUESSING.<br>
+      <span class="headline-accent">TRAIN ON EVIDENCE.</span>
+    </h1>
+    <p class="subcopy">
+      Ask a real question about training, nutrition, or recovery.
+      Every answer is pulled straight from the documents in your knowledge
+      base — never internet opinion, never guesswork.
+    </p>
+
+    <form id="ask-form" class="ask-box" autocomplete="off">
+      <textarea
+        id="question-input"
+        placeholder="e.g. Is training to failure necessary for muscle growth?"
+        rows="2"
+        required
+      ></textarea>
+      <button type="submit" id="ask-button">
+        <span class="btn-label">GET THE EVIDENCE</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <div class="chip-row" id="chip-row">
+      <button type="button" class="chip" data-q="How much protein is needed for muscle growth?">Protein intake</button>
+      <button type="button" class="chip" data-q="Does creatine improve strength?">Creatine</button>
+      <button type="button" class="chip" data-q="How many sets per muscle group are effective?">Training volume</button>
+      <button type="button" class="chip" data-q="How does sleep affect muscle growth?">Sleep &amp; recovery</button>
+    </div>
+  </section>
+
+  <section class="result-section wrap" id="result-section" aria-live="polite">
+    <!-- Empty state -->
+    <div class="state state-empty" id="state-empty">
+      <p class="state-empty-text">Ask something above. This is where the evidence shows up.</p>
+    </div>
+
+    <!-- Loading state -->
+    <div class="state state-loading" id="state-loading" hidden>
+      <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+      <p class="state-loading-text">Searching the knowledge base…</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="state state-error" id="state-error" hidden>
+      <p class="state-error-title">Couldn't get an answer</p>
+      <p class="state-error-text" id="state-error-text"></p>
+    </div>
+
+    <!-- No results state -->
+    <div class="state state-noresults" id="state-noresults" hidden>
+      <p class="state-noresults-title">No evidence found</p>
+      <p class="state-noresults-text">
+        Nothing in the current knowledge base addresses this. Add relevant
+        documents to <code>data/</code> and rebuild the index.
+      </p>
+    </div>
+
+    <!-- Answer card -->
+    <article class="answer-card" id="answer-card" hidden>
+      <p class="answer-eyebrow">Verdict</p>
+      <p class="answer-question" id="answer-question"></p>
+      <p class="answer-text" id="answer-text"></p>
+
+      <div class="divider"></div>
+
+      <p class="sources-label">Backed by</p>
+      <div class="sources-row" id="sources-row"></div>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>FitEvidence AI answers only from documents in <code>data/</code>. Not medical advice.</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
