@@ -59,8 +59,7 @@ flowchart TD
 
 ## Live demo
 
-*(coming soon — see Deployment section below)*
-
+https://fitevidence-ai.onrender.com/
 ## Getting started
 
 ### 1. Get a free Gemini API key
